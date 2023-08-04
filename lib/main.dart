@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trip_wallet/home_page.dart';
+import 'package:trip_wallet/home_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trip_wallet/convert.dart';
 import 'package:trip_wallet/settings_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,7 +13,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String selectedMoeda = 'BR\$';
+
   List<String> moedas = ['BR\$', 'US\$', 'CAD\$'];
+
+  TextEditingController valorController = TextEditingController();
+
+  double valorBR = 0.0;
+  double valorUS = 0.0;
+  double valorCAD = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    valorController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,9 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   const SizedBox(width: 8.0),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: valorController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
                         hintText: 'Digite o valor que deseja calcular',
                         hintStyle: TextStyle(color: Colors.grey),
                         contentPadding:
@@ -89,7 +106,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        double valorDeEntrada =
+                            double.tryParse(valorController.text) ?? 0.0;
+                        Conversor converter =
+                            Conversor(selectedMoeda, valorDeEntrada);
+                        converter
+                            .converter()
+                            .then((Map<String, double> valoresConvertidos) {
+                          setState(() {
+                            valorBR = valoresConvertidos['BR\$']!;
+                            valorUS = valoresConvertidos['US\$']!;
+                            valorCAD = valoresConvertidos['CAD\$']!;
+                          });
+                        });
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),
                         child: Text(
@@ -102,8 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  // Exibindo os valores nas três moedas
                 ],
-              )
+              ),
+              const SizedBox(height: 18.0),
+              Text('Valor em Real Brasileiro: BR\$ $valorBR'),
+              Text('Valor em Dólar Americano: US\$ $valorUS'),
+              Text('Valor em Dólar Canadense: CAD\$ $valorCAD'),
             ],
           ),
         ),
