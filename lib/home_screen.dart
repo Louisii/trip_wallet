@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trip_wallet/convert.dart';
+import 'package:trip_wallet/conversor.dart';
 import 'package:trip_wallet/settings_screen.dart';
+import 'package:intl/intl.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -136,10 +137,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Exibindo os valores nas três moedas
                 ],
               ),
-              const SizedBox(height: 18.0),
-              Text('Valor em Real Brasileiro: BR\$ $valorBR'),
-              Text('Valor em Dólar Americano: US\$ $valorUS'),
-              Text('Valor em Dólar Canadense: CAD\$ $valorCAD'),
+              const SizedBox(height: 28.0),
+              Text(
+                '\u{1F1E7}\u{1F1F7}  R\$${valorBR.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.grey[800],
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                '\u{1F1FA}\u{1F1F8}  US\$${valorUS.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.grey[800],
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                '\u{1F1E8}\u{1F1E6}  CAD\$${valorCAD.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.grey[800],
+                ),
+              ),
             ],
           ),
         ),
