@@ -10,11 +10,11 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final PreferencesManager _preferencesManager = PreferencesManager();
-  double cotacaoUS = 4.80;
-  double cotacaoCAD = 3.60;
-  double taxaUS = 7.00;
-  double taxaCAD = 15.00;
-  double iof = 5.38;
+  double cotacaoUS = 0;
+  double cotacaoCAD = 0;
+  double taxaUS = 0;
+  double taxaCAD = 0;
+  double iof = 0;
 
   bool isLoading = true;
 

@@ -15,10 +15,10 @@ class PreferencesManager {
   Future<Map<String, double>> loadPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     return {
-      cotacaoUSKey: prefs.getDouble(cotacaoUSKey) ?? 4.80,
-      cotacaoCADKey: prefs.getDouble(cotacaoCADKey) ?? 3.60,
+      cotacaoUSKey: prefs.getDouble(cotacaoUSKey) ?? 4.86,
+      cotacaoCADKey: prefs.getDouble(cotacaoCADKey) ?? 3.64,
       taxaUSKey: prefs.getDouble(taxaUSKey) ?? 7.00,
-      taxaCADKey: prefs.getDouble(taxaCADKey) ?? 15.00,
+      taxaCADKey: prefs.getDouble(taxaCADKey) ?? 13.00,
       iofKey: prefs.getDouble(iofKey) ?? 5.38,
     };
   }
